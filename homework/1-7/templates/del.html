@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>attention</title>
+</head>
+<body>
+    <p>make sure you want to delete: </p>
+    <p><strong>{{ article.title }}</strong></p>
+    <form method="post" action="/del/{{ article.article_id }}">
+        <button name="confirm" type="submit">confirm</button>
+        <button name="cancel" type="button" onclick="window.history.back()">cancel</button>
+    </form>
+</body>
+</html>

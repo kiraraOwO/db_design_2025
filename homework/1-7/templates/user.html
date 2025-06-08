@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <style>
+        .article_box {
+            width: 1000px;
+        }
+        p {
+            word-warp: break-word;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <a href='/'>home</a>
+    {% if not login %}
+    <p>login first bro</p>
+    <script>
+        setTimeout(function() {
+            window.location.replace("/login");
+        }, 3000);
+    </script>
+    {% else %}
+    <a href="/logout">logout</a>
+    <h1>welcome back: {{ nickname }}</h1>
+    <button onclick="window.location.href='/edit/new'">new</button>
+    <hr>
+    {% if articles %}
+    {% for article in articles %}
+        <div class="article_box">
+            <h3><a href="/edit/{{ article.article_id }}">{{ article.title }}</a></h3>
+            <p>{{ article.content }}</p>
+        </div>
+    {% endfor %}
+    {% else %}
+    <p>nothing</p>
+    {% endif %}
+    {% endif %}
+</body>
+</html>

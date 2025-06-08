@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+    <style>
+        .article_box {
+            width: 1000px;
+        }
+        p {
+            word-warp: break-word;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    {% if login %}
+    <a href="/user">Hello! {{ nickname }}</a>
+    <a href="/logout">logout</a>
+    {% else %}
+    <a href="/login">login</a>
+    {% endif %}
+    <h1>articles</h1>
+    <form method="post" action="/search">
+        <label>search: </label>
+        <input type="search" name="keyword" placeholder="keyword">
+        <button type="submit">click</button>
+    </form>
+    <hr>
+    {% if articles %}
+    {% for article in articles %}
+    <div class="article_box">
+        <h3><a href="/article/{{ article.article_id }}">{{ article.title }}</a></h3>
+        <p>{{ article.content }}</p>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>nothing</p>
+    {% endif %}
+</body>
+</html>

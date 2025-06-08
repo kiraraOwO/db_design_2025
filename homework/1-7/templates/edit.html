@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if new %}
+    <title>new article</title>
+    {% else %}
+    <title>Editor: {{ data.title }}</title>
+    {% endif %}
+</head>
+<body>
+    <a href='/'>home</a>
+    <a href='/user'>back to user</a>
+    {% if new %}
+    <h1>new article</h1>
+    <form method="post" action="/edit/new">
+        <input type="text" name="title" style="width:500px;">
+        <br>
+        <textarea cols="70" rows="30" name="content"></textarea>
+        <br>
+        <button type="submit">submit</button>
+    </form>
+    {% else %}
+    <h1>edit article</h1>
+    <form method="post" action="/edit/{{ data.article_id }}">
+        <input type="text" name="title" value="{{ data.title }}" style="width:500px;">
+        <br>
+        <textarea cols="70" rows="30" name="content">{{ data.content }}</textarea>
+        <br>
+        <button type="submit">submit</button>
+    </form>
+    <hr>
+    <button name="del" onclick="window.location.href='/del/{{ data.article_id }}'">del</button>
+    {% endif %}
+</body>
+</html>
